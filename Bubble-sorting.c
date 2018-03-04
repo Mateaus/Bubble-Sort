@@ -8,6 +8,7 @@ typedef struct
 } Course;
 
 void sortById(Course courseM[], int iCourseCnt);
+void sortByName(Course courseM[], int iCourseCnt);
 
 int main()
 {
@@ -20,7 +21,15 @@ int main()
   int N = sizeof(courseM)/sizeof(courseM[0]);
   int i;
 
+  printf("%s\n", "Sorted by Course ID");
   sortById(courseM, N);
+  for(i = 0; i < N; i++){
+    printf("[%d]", courseM[i].dCourseIDs);
+    printf("[%s]\n", courseM[i].szCourseName);
+  }
+  
+  printf("\n%s\n", "Sorted by Course Name");
+  sortByName(courseM, N);
   for(i = 0; i < N; i++){
     printf("[%d]", courseM[i].dCourseIDs);
     printf("[%s]\n", courseM[i].szCourseName);
@@ -37,6 +46,23 @@ void sortById(Course courseM[], int iCourseCnt)
   for(i = 0; i < iCourseCnt; i++){
     for(j = 0; j < (iCourseCnt - 1); j++){
       if(courseM[j].dCourseIDs > courseM[j+1].dCourseIDs){
+        swap = courseM[j];
+        courseM[j] = courseM[j+1];
+        courseM[j+1] = swap;
+      }
+    }
+  }
+  return;
+}
+
+void sortByName(Course courseM[], int iCourseCnt)
+{
+  int i, j;
+  Course swap;
+
+  for(i = 0; i < iCourseCnt; i++){
+    for(j = 0; j < (iCourseCnt - 1); j++){
+      if(strcmp(courseM[j].szCourseName, courseM[j+1].szCourseName) > 0){
         swap = courseM[j];
         courseM[j] = courseM[j+1];
         courseM[j+1] = swap;
