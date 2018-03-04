@@ -1,2 +1,2 @@
 # Bubble Sort
-Training Wheels method.
+Training Wheels method. 
